@@ -3,18 +3,18 @@
 %% Kang and Oh JME GAZUAHHH!!
 
 var c h l w R pi q r_k k x y N u Omega theta_p pi_w theta_w % #19
-    v xi phi psi z g% #5
+    v xi phi psi z g eps_p eps_w eps_n% #9
     ; 
 
 %predetermined_variables N;
 
-varexo e_v e_xi e_phi e_psi e_z e_R e_g % #7
+varexo e_v e_xi e_phi e_psi e_z e_R e_g e_p e_w e_n % #7
         ;
 
 parameters gamma zeta vartheta beta delta kappa_x rho alpha f rho_N kappa_u omega s_m kappa_p chi_y eta_y kappa_w chi_l eta_l gamma_l gamma_p gamma_w
         rho_R alpha_pi alpha_y sigma_R rho_v sigma_v rho_xi sigma_xi rho_phi sigma_phi rho_psi sigma_psi rho_z sigma_z rho_g sigma_g
         c_ss lambda_ss h_ss l_ss w_ss R_ss pi_ss q_ss r_k_ss Nfy_ss ukl_ss gy_ss ky_ss xk_ss k_ss x_ss y_ss N_ss u_ss N_star_ss Omega_ss theta_p_ss pi_w_ss theta_w_ss
-        v_ss xi_ss phi_ss psi_ss z_ss g_ss;
+        v_ss xi_ss phi_ss psi_ss z_ss g_ss sig_p sig_w sig_n;
 
 
 gamma = 1.005;
@@ -86,6 +86,9 @@ rho_z = 0.8266;
 sigma_z = 0.0044;
 rho_g = 0.8514;
 sigma_g = 0.0151;
+sig_p=.0022;
+sig_w=.0101;
+sig_n=.0038;
  
 model(linear);
 % 1.
@@ -97,38 +100,38 @@ model(linear);
 % 3.
     xi + h + vartheta*l = w;
 
-% 4.
+% 4. 
     h = rho/(1 - zeta/gamma)*(c - zeta/gamma*c(-1)) + (1 - rho)/gamma*h(-1);
 
 % 5.
     q = (1 - delta)*beta/gamma*q(+1) + (1 - (1 - delta)*beta/gamma)*r_k(+1) - (R - pi(+1) + phi);
 
-% 6.
+% 6. 1-delta/gamma->1+delta/gamma
     k = (1 - delta)/gamma*k(-1) + (1 - (1 - delta)/gamma)*(x + psi);
 
 % 7.
     y = (1 + Nfy_ss)*(z + alpha*(u + N - N(-1) + k(-1)) + (1 - alpha)*l) - Nfy_ss*N;
 
-% 8.
-    N = rho_N*N(-1) + (1 - rho_N)*(y + theta_p_ss/(theta_p_ss - ((1 - alpha)*theta_w_ss + alpha))*(theta_p - (1 - alpha)*theta_w_ss/((1 - alpha)*theta_w_ss + alpha)*theta_w));
+% 8. eps_Nt?
+    N = rho_N*N(-1) + (1 - rho_N)*(y + theta_p_ss/(theta_p_ss - ((1 - alpha)*theta_w_ss + alpha))*(theta_p - (1 - alpha)*theta_w_ss/((1 - alpha)*theta_w_ss + alpha)*theta_w))+eps_n;
 
-% 9.
+% 9. 
     Omega + z + (alpha - 1)*(u + N - N(-1) + k(-1) - l) = r_k;
 
 % 10.
     u = 1/omega*r_k;
 
-% 11.
-    pi = gamma_p/(1 + beta*gamma_p)*pi(-1) + beta/(1 + beta*gamma_p)*pi(+1) + ((1 - s_m)*(chi_y - (chi_y - eta_y)/N_ss) - 1)/(1 + beta*gamma_p)/kappa_p*(Omega + theta_p);
+% 11. eps_pt?
+    pi = gamma_p/(1 + beta*gamma_p)*pi(-1) + beta/(1 + beta*gamma_p)*pi(+1) + ((1 - s_m)*(chi_y - (chi_y - eta_y)/N_ss) - 1)/(1 + beta*gamma_p)/kappa_p*(Omega + theta_p)+eps_p;
 
-% 12.
+% 12. 
     theta_p = - (1 - s_m)*(chi_y - eta_y)/N_ss*(theta_p_ss - 1)^2/theta_p_ss*N;
 
 % 13.
     pi_w - pi = w - w(-1);
 
-% 14.
-    pi_w - gamma_w*pi(-1) = beta*(pi_w(+1) - gamma_w*pi) + (chi_l - (chi_l - eta_l)/N_ss + 1)/kappa_w*(Omega + z + alpha*(u + N - N(-1) + k(-1) - l) - w + theta_w);
+% 14. eps_wt?
+    pi_w - gamma_w*pi(-1) = beta*(pi_w(+1) - gamma_w*pi) + (chi_l - (chi_l - eta_l)/N_ss + 1)/kappa_w*(Omega + z + alpha*(u + N - N(-1) + k(-1) - l) - w + theta_w)+eps_w;
 
 % 15.
     theta_w = (chi_l - eta_l)/N_ss*(1 - theta_w_ss)^2/theta_w_ss*N;
@@ -156,6 +159,15 @@ model(linear);
 
 % 25.
     (g) = rho_g*(g(-1)) + sigma_g*e_g;
+    
+% 26.
+    (eps_p)=sig_p*e_p;
+    
+% 27.
+    (eps_w)=sig_w*e_w;
+
+% 28.
+    (eps_n)=sig_n*e_n;
 
 end;
 
@@ -183,6 +195,9 @@ phi = 0;
 psi = 0;
 z = 0;
 g = 0;
+eps_p=0;
+eps_n=0;
+eps_w=0;
 end;
 
 
@@ -200,6 +215,9 @@ var e_psi = 0;
 var e_z = 1; 
 var e_R = 1;
 var e_g = 0;
+var e_w=1;
+var e_p=0;
+var e_n=0;
 end;
 
-stoch_simul(order=1,irf=10) y c l w pi theta_p theta_w N r_k R;
+stoch_simul(order=1,irf=20) y c l w pi theta_p theta_w N r_k R;
