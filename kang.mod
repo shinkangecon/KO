@@ -123,10 +123,16 @@ model;
 
 % 12.
     r_k + kappa_u/(1 + omega)*(u^(1 + omega) - 1) = kappa_u*u^(1 + omega);
+    
+% For 12 Firm Utilization. By Shin: Can the below be worked?
+% Omega*alpha*(y/N+f)/u=kappa_u*(u^omega)*k(-1)/N(-1);
 
 % 13.
     (pi/(pi(-1)^gamma_p*pi_ss^(1-gamma_p)) - 1)*pi/(pi(-1)^gamma_p*pi_ss^(1-gamma_p)) = beta*lambda(+1)/lambda*(pi(+1)/(pi^gamma_p*pi_ss^(1-gamma_p)) - 1)*pi(+1)/(pi(-1)^gamma_p*pi_ss^(1-gamma_p))*y(+1)/y*N/N(+1)
         - ((1 - s_m)*(chi_y - (chi_y - eta_y)/N) - 1)/kappa_p*(1 - theta_p*Omega);
+
+% For 13 Price Philips Curve. By Shin: Can the below be worked?
+% (pi/pi_ss-1)*pi/pi_ss=beta*(lambda(+1)/lambda)*(pi(+1)/pi_ss-1)*(pi(+1)/pi_ss)*(y(+1)/y)*(N/N(+1))-(1-theta_p*Omega)*((1-s_m)*(chi_y-(chi_y-eta_y)/N)-1)/kappa_p;
 
 % 14.
     theta_p = (1 - s_m)*(chi_y - (chi_y - eta_y)/N)/((1 - s_m)*(chi_y - (chi_y - eta_y)/N) - 1);
@@ -137,6 +143,10 @@ model;
 % 16.
     (pi_w/(pi(-1)^gamma_w*pi_ss^(1-gamma_w)) - 1)*pi_w/(pi(-1)^gamma_w*pi_ss^(1-gamma_w)) = beta*lambda(+1)/lambda*(pi_w(+1)/(pi^gamma_w*pi_ss^(1-gamma_w)) - 1)*(pi_w(+1)/(pi^gamma_w*pi_ss^(1-gamma_w)))*(pi_w(+1)/pi_ss)*l(+1)/l*N/N(+1)
         - (chi_l - (chi_l - eta_l)/N + 1)/kappa_w*(1 - theta_w*Omega*(1-alpha)*z*(u*k(-1)*N/l/N(-1))^alpha/w);
+
+% For 16. Wage Philips Curve. By Shin: Can the below be worked?
+% (pi_w/pi_ss-1)*pi_w/pi_ss=beta*(lambda(+1)/lambda)*(pi_w(+1)/pi_ss-1)*((pi_w/pi_ss)^2)*(l(+1)/l)*(N/N(+1))-((chi_l-(chi_l-eta_l)/N+1)/kappa_w)*(1-theta_w*Omega*(1-alpha)*z*(u*k(-1)*N/(l*N(-1))^alpha)/w);
+
 
 % 17.
     theta_w = (chi_l - (chi_l - eta_l)/N)/(chi_l - (chi_l - eta_l)/N + 1);
