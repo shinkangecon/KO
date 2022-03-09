@@ -8,6 +8,9 @@ var c h l w R pi q r_k k x y N u Omega theta_p pi_w theta_w % #19
 
 %predetermined_variables N;
 
+
+
+
 varexo e_v e_xi e_phi e_psi e_z e_R e_g e_p e_w e_n % #7
         ;
 
