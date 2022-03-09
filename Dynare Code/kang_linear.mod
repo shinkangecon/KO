@@ -27,7 +27,7 @@ alpha = 0.3;
 s_m = 0.45;
 gy_ss = 0.2;
 l_ss = 3; % s.t. gamma_l = 1
-N_ss = 8;
+N_ss = 9;
 zeta = 0.9736;
 eta_y = 9.9582;
 chi_y = 1.9790;
