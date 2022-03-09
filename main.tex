@@ -1,0 +1,316 @@
+% Github practice either
+
+\documentclass[10pt]{article}
+
+% - Check for PDFLaTeX -
+\usepackage{ifpdf}
+\ifpdf							% If PDFLaTeX is avaialble
+	\usepackage[pdftex]{graphicx}
+	\usepackage{epstopdf}		% epstopdf package converts eps figures to pdf files
+\else							% If PDFLaTeX is not available
+	\usepackage{graphicx}
+\fi
+
+\usepackage{appendix}
+\def\appendixautorefname{Appendix}
+
+% - BibTeX -
+\usepackage{natbib}
+\usepackage{tensor}
+% - Math packages -
+\usepackage{amsmath, amssymb}
+	% AMS math and symbols
+\usepackage{bm, bbm}
+	% Bold math package for bold greek letters.
+	% We can define new commands for this package, which will be defined below.
+
+% - Table and Figure related packages -
+\usepackage[flushleft]{threeparttable}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{subfigure}
+% \usepackage[nolists, nomarkers]{endfloat}
+
+% - Misc. packages -
+\usepackage{fancybox}
+\usepackage{color}
+\usepackage{lscape}
+
+% - Packages to produce flow chart 
+\usepackage{tikz}     % for flow charts 
+\usetikzlibrary{shapes, arrows, arrows.meta, positioning}
+\usetikzlibrary{automata}
+\usepgflibrary{arrows} % LATEX and plain TEX and pure pgf 
+\usepgflibrary[arrows] % ConTEXt and pure pgf 
+\usetikzlibrary{arrows} % LATEX and plain TEX when using Tikz 
+\usetikzlibrary[arrows] % ConTEXt when using Tikz
+
+
+% - Utility packages -
+\usepackage{enumerate}
+% Make enumeration inline
+\usepackage[inline]{enumitem}
+%\usepackage{refcheck}
+	% refcheck displays label names defined.
+	% This package has to be commented out for the final version!
+%\nocitenames
+	% Option for refcheck not to display BibTeX cite keys
+\usepackage{soul}
+	% soule package enables letter spacing (\so{}), capitalizing (\caps{}),
+	% underlining (\ul{}), overstriking (\st{}), and highlighting (\hl{}).
+	% We can change colors used for \ul{}, \st{}, and \hl{} as well.
+\usepackage[
+% disable,
+textsize=footnotesize,
+color=blue!50,
+textwidth = 0.8in
+]{todonotes}
+% Create list of ToDo{'}s
+%\newcommand{\smalltodo}[2][]{\todo[caption={#2}, #1]{\begin{spacing}{1}#2\end{spacing}}}
+
+\usepackage{url}
+\usepackage[
+\ifpdf
+	pdftex,
+\fi
+colorlinks = true,		% Enables colored links (false produces boxed links)
+urlcolor   = black,		% Set color for URL links
+linkcolor  = blue,		% Set color for internal links (e.g., equations, figures, etc...)
+citecolor  = blue,		% Set color for citations
+breaklinks = true,		% Allow links to break over lines
+bookmarks  = true, 		% Create Acrobat bookmarks
+% hyperfootnotes=false	% Disable link to footnotes
+]{hyperref}
+
+\usepackage{setspace}
+%\singlespacing
+%\onehalfspacing
+\doublespacing
+
+% - Font packages -
+% \usepackage{pxfonts}
+% \usepackage{mathpazo}
+
+\textwidth      = 6.5 in
+\textheight     = 9.0 in
+\oddsidemargin  = 0.0 in
+\evensidemargin = 0.0 in
+\topmargin      = 0.0 in
+\headheight     = 0.0 in
+\headsep        = 0.0 in
+\parskip        = 0.0 in
+\parindent      = 0.0 in%.3 in
+
+% \usepackage{fullpage}
+
+\newcommand{\under}[2]{\underset{(#2)}{#1}}
+
+%%%%% --- Only for Editting Purpose ---- %%%%%
+\newcommand{\hlg}[1]{{\sethlcolor{green}\hl{#1}}}
+\definecolor{lightblue}{rgb}{0.8,0.9,1}
+\newcommand{\hlb}[1]{{\sethlcolor{lightblue}\hl{#1}}}
+
+\usepackage{comment} % to comment blocks
+
+%-------------------------------------------------
+%To Add that it's preliminary
+%-------------------------------------------------
+\usepackage{xpatch}
+\usepackage{xifthen}
+
+\newboolean{draftmode}
+
+\newcommand{\enabledraft}{\setboolean{draftmode}{true}}
+
+%\newcommand{\draftnote}{%
+%\ifthenelse{\boolean{draftmode}}{%
+%\vspace{-3em}%
+
+% \begin{flushright}
+% \framebox{\color{red}\large Preliminary draft: please do not quote or cite}
+% \end{flushright}
+%}{}}
+
+\makeatletter
+%\patchcmd{\@maketitle}{2em}{2em \draftnote}{}{}
+\makeatother
+
+\enabledraft
+
+
+%\graphicspath{{C:/Users/USER/Downloads/}}
+
+\begin{document}
+\title{Phillips Curve with Labor Market Power\thanks{The views expressed in this paper are those of the authors, and not necessarily those of the Korea Labor Institute.}} 
+\author{ShinHyuck~Kang\thanks{Korea Labor Institute. E-mail: \href{mailto:shinkang@kli.re.kr}{\nolinkurl{shinkang@kli.re.kr}}.}
+\and
+Joonseok~Oh\thanks{Chair of Macroeconomics, School of Business and Economics, Freie Universit{\"a}t Berlin, Boltzmannstrasse 20, 14195 Berlin, Germany. Phone: +49 30 838 67525. E-mail: \href{mailto:joonseok.oh@fu-berlin.de}{\nolinkurl{joonseok.oh@fu-berlin.de}}.}
+}  
+
+
+\maketitle
+\begin{abstract}
+\noindent We explore macroeconomic consequences of asymmetric cost-push shock and inflationary wage shock in the economy of oligopoly sellers and oligopsony employers. To the end, we estimate a New-Keynesian model which allows us to investigate firm market power in both product and labor market. First, we identify the channel of deflationary/inflationary wage shock and find that the U.S. data supports that wage shock is inflationary. Second, our results imply that the size of product and labor market power is crucial to explain asymmetric impulse responses. All results imply that both markups and markdowns are crucial in shaping of Philips curve, and thus the size of trade-off in monetary policy.   
+
+
+
+\bigskip
+
+\noindent \textbf{Keywords:} \\
+\textbf{JEL Classification:}  
+\end{abstract}
+
+\clearpage
+
+\section{Introduction}\label{intro}
+
+\section{Model}\label{model}
+\citet{Alpanda_Zubairy_2021}
+
+Consumption FOC
+\begin{equation}
+    \frac{v_{t}}{c_{t}-\zeta c_{t-1}} = \lambda_{t},
+\end{equation}
+Labor FOC
+\begin{equation}
+    \xi_{t}h_{t}{l_{t}}^{\vartheta} = w_{t},
+\end{equation}
+Government Bonds FOC
+\begin{equation}
+    1 = \beta E_{t}\frac{\lambda_{t+1}}{\lambda_{t}}\frac{R_{t}\phi_{t}}{\pi_{t+1}},
+\end{equation}
+Capital FOC
+\begin{equation}
+    q_{t} = \beta E_{t}\frac{\lambda_{t+1}}{\lambda_{t}}\left( \left(1-\delta\right)q_{t+1} + r_{k,t+1}\right),
+\end{equation}
+Law of Motion for Capital
+\begin{equation}
+    k_{t} = \left(1-\delta\right)k_{t-1} + \left(1 - \frac{\kappa_{x}}{2}\left(\frac{x_{t}}{x_{t-1}}-1 \right)^{2}\right)\psi_{t}x_{t},
+\end{equation}
+Investment FOC
+\begin{equation}
+    1 = q_{t}\psi_{t}\left(1 - \frac{\kappa_{x}}{2}\left(\frac{x_{t}}{x_{t-1}}-1\right)^{2}  - \kappa_{x}\left(\frac{x_{t}}{x_{t-1}}-1 \right)\frac{x_{t}}{x_{t-1}} \right) + \beta E_{t}\frac{\lambda_{t+1}}{\lambda_{t}}q_{t+1}\psi_{t+1}\kappa_{x}\left( \frac{x_{t+1}}{x_{t}}-1\right)\left(\frac{x_{t+1}}{x_{t}}\right)^{2},
+\end{equation}
+Labor Supply Externality
+\begin{equation}
+    h_{t} = \left(c_{t} - \zeta c_{t-1}\right)^{\rho}{h_{t-1}}^{1-\rho},
+\end{equation}
+Production Function
+\begin{equation}
+    \frac{y_{t}}{N_{t}} = z_{t}\left( u_{t}\frac{k_{t-1}}{N_{t-1}}\right)^{\alpha}\left(\frac{l_{t}}{N_{t}}\right)^{1-\alpha}-f,
+\end{equation}
+Actual Number of Firms
+\begin{equation}
+    N_{t} = {N_{t-1}}^{\rho_{N}}{N_{t}^{\star}}^{1-\rho_{N}},
+\end{equation}
+Long-Run Target Number of Firms
+\begin{equation}
+    N_{t}^{\star}=\left(\frac{\theta_{p,t}}{\left(1-\alpha\right)\theta_{w,t}+\alpha}-1 \right)\frac{y_{t}}{f},
+\end{equation}
+Firm Capital FOC
+\begin{equation}
+    \Omega_{t}\alpha\frac{y_{t}/N_{t}+f}{k_{t-1}/N_{t-1}} = r_{k,t} + \frac{\kappa_{u}}{1+\omega}\left({u_{t}}^{1+\omega}-1\right),
+\end{equation}
+Firm Utilization FOC
+\begin{equation}
+    \Omega_{t}\alpha\frac{y_{t}/N_{t}+f}{u_{t}} = {\kappa_{u}}{u_{t}}^{\omega}\frac{k_{t-1}}{N_{t-1}},
+\end{equation}
+\textcolor{blue}{Please check Firm Utilization}\\
+%\[r_k + kappa_u/(1 + \omega)*(u^(1 + \omega) - 1) = kappa_u*u^(1 + \omega)\]
+Price Phillips Curve
+\begin{equation}
+    \left(\frac{\pi_{t}}{\pi}-1 \right)\frac{\pi_{t}}{\pi} = \beta E_{t}\frac{\lambda_{t+1}}{\lambda_{t}}\left(\frac{\pi_{t+1}}{\pi}-1\right)\frac{\pi_{t+1}}{\pi}\frac{y_{t+1}/N_{t+1}}{y_{t}/N_{t}} - \frac{\left(1-s_{m}\right)\left(\chi_{y} - \frac{\chi_{y}-\eta_{y}}{N_{t}}\right)-1}{\kappa_{p}}\left(1-\theta_{p,t}\Omega_{t}\right),
+\end{equation}
+\textcolor{blue}{Please check Price Philips Curve}\\
+%\[(pi/(pi(-1)^gamma_p*pi_ss^(1-gamma_p)) - 1)*pi/(pi(-1)^gamma_p*pi_ss^(1-gamma_p)) = beta*lambda(+1)/lambda*(pi(+1)/(pi^gamma_p*pi_ss^(1-gamma_p)) - 1)*pi(+1)/(pi(-1)^gamma_p*pi_ss^(1-gamma_p))*y(+1)/y*N/N(+1) - ((1 - s_m)*(chi_y - (chi_y - eta_y)/N) - 1)/kappa_p*(1 - theta_p*Omega)\]
+
+Price Markup
+\begin{equation}
+    \theta_{p,t}=\frac{\left(1-s_{m}\right)\left(\chi_{y} - \frac{\chi_{y}-\eta_{y}}{N_{t}}\right)}{\left(1-s_{m}\right)\left(\chi_{y} - \frac{\chi_{y}-\eta_{y}}{N_{t}}\right)-1},
+\end{equation}
+Nominal Wage Inflation
+\begin{equation}
+    \pi_{w,t} = \frac{w_{t}}{w_{t-1}}\pi_{t},
+\end{equation}
+Wage Phillips Curve
+\begin{equation}
+\begin{aligned}
+    \left(\frac{\pi_{w,t}}{\pi}-1 \right)\frac{\pi_{w,t}}{\pi} = \beta E_{t}\frac{\lambda_{t+1}}{\lambda_{t}}\left(\frac{\pi_{w,t+1}}{\pi}-1\right)\left(\frac{\pi_{w,t+1}}{\pi}\right)^{2}\frac{l_{t+1}/N_{t+1}}{l_{t}/N_{t}} \\- \frac{\chi_{l} - \frac{\chi_{l}-\eta_{l}}{N_{t}}+1}{\kappa_{w}}\left(1-\theta_{w,t}\frac{\Omega_{t}\left(1-\alpha\right)z_{t}\left(u_{t}\frac{k_{t-1}/N_{t-1}}{l_{t}/N_{t}}\right)^{\alpha}}{w_{t}}\right),
+\end{aligned}
+\end{equation}
+\textcolor{blue}{Please check Wage Philips Curve}
+%(pi_w/(pi(-1)^gamma_w*pi_ss^(1-gamma_w)) - 1)*pi_w/(pi(-1)^gamma_w*pi_ss^(1-gamma_w)) = beta*lambda(+1)/lambda*(pi_w(+1)/(pi^gamma_w*pi_ss^(1-gamma_w)) - 1)*(pi_w(+1)/(pi^gamma_w*pi_ss^(1-gamma_w)))*(pi_w(+1)/pi_ss)*l(+1)/l*N/N(+1)- (chi_l - (chi_l - eta_l)/N + 1)/kappa_w*(1 -theta_w*Omega*(1-alpha)*z*(u*k(-1)*N/l/N(-1))^alpha/w);
+Wage Markdown
+\begin{equation}
+    \theta_{w,t}=\frac{\chi_{l} - \frac{\chi_{l}-\eta_{l}}{N_{t}}}{\chi_{l} - \frac{\chi_{l}-\eta_{l}}{N_{t}}+1},
+\end{equation}
+Good Market Clearing
+\begin{equation}
+    c_{t}+x_{t}+g_{t} = y_{t},
+\end{equation}
+Taylor Rule
+\begin{equation}
+    \frac{R_{t}}{R} = \left(\frac{R_{t-1}}{R} \right)^{\rho_{R}}\left(\left(\frac{\pi_{t}}{\pi}\right)^{\alpha_{\pi}} \left(\frac{y_{t}}{y}\right)^{\alpha_{y}} \right)^{1-\rho_{R}}\exp{\varepsilon_{R,t}}.
+\end{equation}
+\clearpage
+\section*{Acknowledgements}
+We are grateful to Mira Kim and Yeonu Oh for insightful discussions and helpful suggestions. All errors are our own. 
+
+\clearpage
+\bibliographystyle{aer}
+\bibliography{literature_review.bib}
+
+
+
+
+
+
+\clearpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\appendix
+\appendixpage
+
+\renewcommand\thefigure{\thesection.\arabic{figure}}
+\renewcommand{\theHfigure}{\theHsection.\arabic{figure}}
+\renewcommand\thetable{\thesection.\arabic{table}}
+\renewcommand\theHtable{\theHsection.\arabic{table}}
+\renewcommand\theequation{\thesection.\arabic{equation}}
+\renewcommand\theHequation{\theHsection.\arabic{equation}}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{equation}{0}
+
+
+
+\end{document} 		
+
+
